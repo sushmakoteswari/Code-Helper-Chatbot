@@ -3,6 +3,8 @@ import { createServer } from "http";
 import { storage } from "./storage";
 import { explanationRequestSchema } from "@shared/schema";
 import { z } from "zod";
+import dotenv from "dotenv";
+dotenv.config();
 
 if (!process.env.TOGETHER_API_KEY) {
   throw new Error("TOGETHER_API_KEY environment variable is required");

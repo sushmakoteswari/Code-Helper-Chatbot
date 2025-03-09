@@ -35,22 +35,22 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-background to-background/80 p-6">
       <div className="container mx-auto py-8 px-4 max-w-4xl">
         <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
           Code & Tech Explanation Assistant
         </h1>
 
         {recentExplanations?.length ? (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold mb-4">Recent Explanations</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-6">
+            <h2 className="text-2xl font-semibold mb-4 text-center">Recent Explanations</h2>
+            <div className="grid gap-6 md:grid-cols-2">
               {recentExplanations.map((exp) => (
                 <div
                   key={exp.id}
-                  className="p-4 rounded-lg border bg-card/50 backdrop-blur-sm"
+                  className="p-5 rounded-xl border bg-card/50 backdrop-blur-lg shadow-md transition-transform duration-200 hover:scale-[1.02] hover:shadow-lg"
                 >
-                  <h3 className="font-medium mb-2">{exp.topic}</h3>
+                  <h3 className="font-semibold text-lg mb-2">{exp.topic}</h3>
                   <p className="text-sm text-muted-foreground">
                     {exp.explanation.slice(0, 150)}...
                   </p>
