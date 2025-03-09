@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Bot } from "lucide-react";
+import { Bot, X } from "lucide-react";
 import { CodeInput } from "./code-input";
 import { ExplanationOutput } from "./explanation-output";
 import { Card } from "@/components/ui/card";
 import type { Explanation } from "@shared/schema";
+import { Button } from "@/components/ui/button";
 
 interface AIChatProps {
   onSubmit: (code: string, topic: string) => void;
@@ -21,12 +22,14 @@ export function AIChat({ onSubmit, isLoading, explanation }: AIChatProps) {
           <div className="p-4 bg-gradient-to-r from-primary/10 to-purple-500/10 flex items-center gap-2 border-b">
             <Bot className="w-6 h-6" />
             <h2 className="font-semibold">AI Assistant</h2>
-            <button 
+            <Button
+              variant="ghost"
+              size="icon"
+              className="ml-auto h-8 w-8 p-0 hover:bg-primary/10"
               onClick={() => setIsOpen(false)}
-              className="ml-auto text-muted-foreground hover:text-foreground"
             >
-              ×
-            </button>
+              <X className="h-4 w-4" />
+            </Button>
           </div>
           <div className="flex-1 overflow-auto p-4 space-y-4">
             <CodeInput onSubmit={onSubmit} isLoading={isLoading} />
