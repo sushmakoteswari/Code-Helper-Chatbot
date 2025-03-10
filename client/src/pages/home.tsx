@@ -9,7 +9,12 @@ export default function Home() {
 
   const { data: recentExplanations } = useQuery<Explanation[]>({
     queryKey: ["/api/explanations/recent"],
+    queryFn: async () => {
+      const res = await apiRequest("GET", "/api/explanations/recent");
+      return res.json();
+    },
   });
+  
 
   const explainMutation = useMutation({
     mutationFn: async ({
@@ -62,10 +67,11 @@ export default function Home() {
       </div>
 
       <AIChat
-        onSubmit={(code, topic) => explainMutation.mutate({ code, topic })}
-        isLoading={explainMutation.isPending}
-        explanation={explainMutation.data}
-      />
+  onSubmit={(code, topic) => explainMutation.mutate({ code, topic })}
+  isLoading={explainMutation.isPending}
+  explanation={explainMutation.data ?? null} // Ensures undefined is converted to null
+/>
+
     </div>
   );
 }

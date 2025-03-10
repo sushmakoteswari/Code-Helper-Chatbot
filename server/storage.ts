@@ -25,7 +25,13 @@ export class MemStorage implements IStorage {
       ...insertExplanation,
       id,
       createdAt: new Date(),
-      metadata: insertExplanation.metadata || null,
+      metadata: insertExplanation.metadata
+  ? {
+      language: typeof insertExplanation.metadata.language === "string" ? insertExplanation.metadata.language : undefined,
+      tokens: typeof insertExplanation.metadata.tokens === "number" ? insertExplanation.metadata.tokens : undefined,
+    }
+  : null,
+
     };
     this.explanations.set(id, explanation);
     return explanation;
