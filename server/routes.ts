@@ -71,5 +71,8 @@ export async function registerRoutes(app: Express) {
     }
   });
 
+  app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working!" });
+  });
   return createServer(app);
 }
